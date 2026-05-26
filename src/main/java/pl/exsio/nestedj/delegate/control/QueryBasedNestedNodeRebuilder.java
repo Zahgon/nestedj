@@ -27,7 +27,6 @@ import pl.exsio.nestedj.delegate.query.NestedNodeRebuildingQueryDelegate;
 import pl.exsio.nestedj.ex.InvalidNodeException;
 import pl.exsio.nestedj.model.NestedNode;
 import pl.exsio.nestedj.model.NestedNodeInfo;
-
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -39,8 +38,7 @@ public class QueryBasedNestedNodeRebuilder<ID extends Serializable, N extends Ne
 
     private final NestedNodeRebuildingQueryDelegate<ID, N> queryDelegate;
 
-    public QueryBasedNestedNodeRebuilder(NestedNodeInserter<ID, N> inserter, NestedNodeRetriever<ID, N> retriever,
-                                         NestedNodeRebuildingQueryDelegate<ID, N> queryDelegate) {
+    public QueryBasedNestedNodeRebuilder(NestedNodeInserter<ID, N> inserter, NestedNodeRetriever<ID, N> retriever, NestedNodeRebuildingQueryDelegate<ID, N> queryDelegate) {
         this.inserter = inserter;
         this.retriever = retriever;
         this.queryDelegate = queryDelegate;
@@ -48,18 +46,12 @@ public class QueryBasedNestedNodeRebuilder<ID extends Serializable, N extends Ne
 
     @Override
     public void rebuildTree() {
-        N first = queryDelegate.findFirst();
-        queryDelegate.resetFirst(first);
-        restoreSiblings(first);
-        rebuildRecursively(first);
-        for (N node : queryDelegate.getSiblings(first.getId())) {
-            rebuildRecursively(node);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void destroyTree() {
-        queryDelegate.destroyTree();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void rebuildRecursively(N parent) {
@@ -85,5 +77,4 @@ public class QueryBasedNestedNodeRebuilder<ID extends Serializable, N extends Ne
         }
         return nodeInfo.get();
     }
-
 }

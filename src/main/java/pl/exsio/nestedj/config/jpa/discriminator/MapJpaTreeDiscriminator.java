@@ -17,11 +17,9 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.config.jpa.discriminator;
 
 import pl.exsio.nestedj.model.NestedNode;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -68,7 +66,7 @@ public class MapJpaTreeDiscriminator<ID extends Serializable, N extends NestedNo
      * @param valueProviders - Map of <String, Supplier<Object>>
      */
     public void setValueProviders(Map<String, Supplier<Object>> valueProviders) {
-        this.valueProviders = valueProviders;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -76,10 +74,6 @@ public class MapJpaTreeDiscriminator<ID extends Serializable, N extends NestedNo
      */
     @Override
     public List<Predicate> getPredicates(CriteriaBuilder cb, Root<N> root) {
-        List<Predicate> predicates = new ArrayList<>();
-        for (Map.Entry<String, Supplier<Object>> providerEntry : valueProviders.entrySet()) {
-            predicates.add(cb.equal(root.get(providerEntry.getKey()), providerEntry.getValue().get()));
-        }
-        return predicates;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

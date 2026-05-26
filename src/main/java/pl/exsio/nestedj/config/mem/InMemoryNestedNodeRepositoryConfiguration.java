@@ -17,13 +17,11 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.config.mem;
 
 import pl.exsio.nestedj.config.mem.discriminator.InMemoryTreeDiscriminator;
 import pl.exsio.nestedj.config.mem.identity.InMemoryNestedNodeIdentityGenerator;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -83,14 +81,14 @@ public class InMemoryNestedNodeRepositoryConfiguration<ID extends Serializable, 
      * @return Tree Discriminator used by this Configuration
      */
     public InMemoryTreeDiscriminator<ID, N> getTreeDiscriminator() {
-        return treeDiscriminator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Identiy Generator used by this Configuration
      */
     public InMemoryNestedNodeIdentityGenerator<ID> getIdentityGenerator() {
-        return identityGenerator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -101,6 +99,6 @@ public class InMemoryNestedNodeRepositoryConfiguration<ID extends Serializable, 
      * @return flat Set of Nodes - the data structure backing the InMemory implementation.
      */
     public Set<N> getNodes() {
-        return nodes;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

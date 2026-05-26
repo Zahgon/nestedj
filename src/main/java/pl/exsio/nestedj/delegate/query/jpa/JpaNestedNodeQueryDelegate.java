@@ -17,13 +17,11 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.delegate.query.jpa;
 
 import pl.exsio.nestedj.config.jpa.JpaNestedNodeRepositoryConfiguration;
 import pl.exsio.nestedj.config.jpa.discriminator.JpaTreeDiscriminator;
 import pl.exsio.nestedj.model.NestedNode;
-
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
@@ -51,8 +49,6 @@ public abstract class JpaNestedNodeQueryDelegate<ID extends Serializable, N exte
     }
 
     protected Predicate[] getPredicates(CriteriaBuilder cb, Root<N> root, Predicate... predicates) {
-        List<Predicate> predicateList = new ArrayList<>(treeDiscriminator.getPredicates(cb, root));
-        Collections.addAll(predicateList, predicates);
-        return predicateList.toArray(new Predicate[0]);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

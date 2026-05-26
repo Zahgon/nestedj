@@ -17,20 +17,17 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.delegate.query.mem;
 
 import pl.exsio.nestedj.config.mem.InMemoryNestedNodeRepositoryConfiguration;
 import pl.exsio.nestedj.config.mem.discriminator.InMemoryTreeDiscriminator;
 import pl.exsio.nestedj.config.mem.identity.InMemoryNestedNodeIdentityGenerator;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
-
 import static pl.exsio.nestedj.model.NestedNode.ID;
 import static pl.exsio.nestedj.model.NestedNode.LEFT;
 import static pl.exsio.nestedj.model.NestedNode.LEVEL;
@@ -56,7 +53,6 @@ public abstract class InMemoryNestedNodeQueryDelegate<ID extends Serializable, N
         SETTERS.put(LEVEL, (node, value) -> node.setTreeLevel((Long) value));
         SETTERS.put(ID, (node, value) -> node.setId((Serializable) value));
         SETTERS.put(PARENT_ID, (node, value) -> node.setParentId((Serializable) value));
-
         GETTERS.put(RIGHT, NestedNode::getTreeRight);
         GETTERS.put(LEFT, NestedNode::getTreeLeft);
         GETTERS.put(LEVEL, NestedNode::getTreeLevel);
@@ -71,35 +67,36 @@ public abstract class InMemoryNestedNodeQueryDelegate<ID extends Serializable, N
     }
 
     protected Stream<N> nodesStream() {
-        return treeDiscriminator != null ? nodes.stream().filter(treeDiscriminator::applies) : nodes.stream();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected ID generateIdentity() {
-        return identityGenerator.generateIdentity();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-
     protected interface Setter<ID extends Serializable, N extends NestedNode<ID>> {
+
         void set(N node, Object value);
     }
 
     protected interface Getter<ID extends Serializable, N extends NestedNode<ID>> {
+
         Object get(N node);
     }
 
     protected Long getLong(String fieldname, N node) {
-        return (Long) GETTERS.get(fieldname).get(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected Serializable getSerializable(String fieldname, N node) {
-        return (Serializable) GETTERS.get(fieldname).get(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected void setLong(String fieldname, N node, Long value) {
-        SETTERS.get(fieldname).set(node, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected void setSerializable(String fieldname, N node, Serializable value) {
-        SETTERS.get(fieldname).set(node, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

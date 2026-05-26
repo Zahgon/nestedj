@@ -25,7 +25,6 @@ import pl.exsio.nestedj.model.InMemoryTree;
 import pl.exsio.nestedj.model.NestedNode;
 import pl.exsio.nestedj.model.NestedNodeInfo;
 import pl.exsio.nestedj.model.Tree;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -40,57 +39,51 @@ public class QueryBasedNestedNodeRetriever<ID extends Serializable, N extends Ne
 
     @Override
     public Tree<ID, N> getTree(N node) {
-        Tree<ID, N> tree = new InMemoryTree<>(node);
-        for (N n : queryDelegate.getChildren(node)) {
-            Tree<ID, N> subtree = this.getTree(n);
-            tree.addChild(subtree);
-        }
-        return tree;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<N> getTreeAsList(N node) {
-        return queryDelegate.getTreeAsList(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<N> getChildren(N node) {
-        return queryDelegate.getChildren(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Optional<N> getParent(N node) {
-        return queryDelegate.getParent(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<N> getParents(N node) {
-        return queryDelegate.getParents(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Optional<N> getPrevSibling(N node) {
-        return queryDelegate.getPrevSibling(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Optional<N> getNextSibling(N node) {
-        return queryDelegate.getNextSibling(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Optional<NestedNodeInfo<ID>> getNodeInfo(ID nodeId) {
-        return queryDelegate.getNodeInfo(nodeId);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Optional<N> findFirstRoot() {
-        return queryDelegate.findFirstRoot();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Optional<N> findLastRoot() {
-        return queryDelegate.findLastRoot();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

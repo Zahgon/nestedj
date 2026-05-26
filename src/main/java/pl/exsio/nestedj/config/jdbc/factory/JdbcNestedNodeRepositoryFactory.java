@@ -17,7 +17,6 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.config.jdbc.factory;
 
 import pl.exsio.nestedj.DelegatingNestedNodeRepository;
@@ -27,7 +26,6 @@ import pl.exsio.nestedj.delegate.control.*;
 import pl.exsio.nestedj.delegate.query.jdbc.*;
 import pl.exsio.nestedj.lock.NoLock;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 
 /**
@@ -47,7 +45,7 @@ public final class JdbcNestedNodeRepositoryFactory {
      * @return - a new instance of NestedNodeRepository backed by JDBC storage
      */
     public static <ID extends Serializable, N extends NestedNode<ID>> NestedNodeRepository<ID, N> create(JdbcNestedNodeRepositoryConfiguration<ID, N> configuration) {
-        return create(configuration, new NoLock<>());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,16 +58,6 @@ public final class JdbcNestedNodeRepositoryFactory {
      * @return - a new instance of NestedNodeRepository backed by JDBC storage
      */
     public static <ID extends Serializable, N extends NestedNode<ID>> NestedNodeRepository<ID, N> create(JdbcNestedNodeRepositoryConfiguration<ID, N> configuration, NestedNodeRepository.Lock<ID, N> lock) {
-        QueryBasedNestedNodeInserter<ID, N> inserter = new QueryBasedNestedNodeInserter<>(new JdbcNestedNodeInsertingQueryDelegate<>(configuration));
-        QueryBasedNestedNodeRetriever<ID, N> retriever = new QueryBasedNestedNodeRetriever<>(new JdbcNestedNodeRetrievingQueryDelegate<>(configuration));
-        return new DelegatingNestedNodeRepository<>(
-                new QueryBasedNestedNodeMover<>(new JdbcNestedNodeMovingQueryDelegate<>(configuration)),
-                new QueryBasedNestedNodeRemover<>(new JdbcNestedNodeRemovingQueryDelegate<>(configuration)),
-                retriever,
-                new QueryBasedNestedNodeRebuilder<>(inserter, retriever, new JdbcNestedNodeRebuildingQueryDelegate<>(configuration)),
-                inserter,
-                lock
-        );
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

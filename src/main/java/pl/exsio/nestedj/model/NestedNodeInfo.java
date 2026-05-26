@@ -17,7 +17,6 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.model;
 
 import java.io.Serializable;
@@ -48,33 +47,27 @@ public class NestedNodeInfo<ID extends Serializable> {
     }
 
     public ID getId() {
-        return id;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public ID getParentId() {
-        return parentId;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Long getLeft() {
-        return left;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Long getRight() {
-        return right;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Long getLevel() {
-        return level;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "NestedNodeInfo{" +
-                "id=" + id +
-                ", parentId=" + parentId +
-                ", left=" + left +
-                ", right=" + right +
-                ", level=" + level +
-                '}';
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -23,13 +23,10 @@ import pl.exsio.nestedj.delegate.NestedNodeInserter;
 import pl.exsio.nestedj.delegate.query.NestedNodeInsertingQueryDelegate;
 import pl.exsio.nestedj.model.NestedNode;
 import pl.exsio.nestedj.model.NestedNodeInfo;
-
 import java.io.Serializable;
 import java.util.Optional;
-
 import static pl.exsio.nestedj.model.NestedNode.LEFT;
 import static pl.exsio.nestedj.model.NestedNode.RIGHT;
-
 
 public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends NestedNode<ID>> implements NestedNodeInserter<ID, N> {
 
@@ -41,17 +38,12 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
 
     @Override
     public void insert(N node, NestedNodeInfo<ID> parentInfo, Mode mode) {
-        makeSpaceForNewElement(getMoveFrom(parentInfo, mode), mode);
-        insertNodeIntoTree(parentInfo, node, mode);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void insertAsFirstNode(N node) {
-        node.setTreeLeft(1L);
-        node.setTreeRight(2L);
-        node.setTreeLevel(0L);
-        node.setParentId(null);
-        queryDelegate.insert(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void insertNodeIntoTree(NestedNodeInfo<ID> parent, N node, Mode mode) {
@@ -66,18 +58,17 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
     }
 
     private void makeSpaceForNewElement(Long from, Mode mode) {
-        if(applyGte(mode)) {
+        if (applyGte(mode)) {
             queryDelegate.incermentSideFieldsGreaterThanOrEqualTo(from, RIGHT);
             queryDelegate.incermentSideFieldsGreaterThanOrEqualTo(from, LEFT);
         } else {
             queryDelegate.incrementSideFieldsGreaterThan(from, RIGHT);
             queryDelegate.incrementSideFieldsGreaterThan(from, LEFT);
         }
-
     }
 
     private Long getMoveFrom(NestedNodeInfo<ID> parent, Mode mode) {
-        switch (mode) {
+        switch(mode) {
             case PREV_SIBLING:
             case FIRST_CHILD:
                 return parent.getLeft();
@@ -89,7 +80,7 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
     }
 
     private Long getNodeLevel(NestedNodeInfo<ID> parent, Mode mode) {
-        switch (mode) {
+        switch(mode) {
             case NEXT_SIBLING:
             case PREV_SIBLING:
                 return parent.getLevel();
@@ -101,7 +92,7 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
     }
 
     private Optional<ID> getNodeParent(NestedNodeInfo<ID> parent, Mode mode) {
-        switch (mode) {
+        switch(mode) {
             case NEXT_SIBLING:
             case PREV_SIBLING:
                 if (parent.getParentId() != null) {
@@ -117,7 +108,7 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
     }
 
     private Long getNodeLeft(NestedNodeInfo<ID> parent, Mode mode) {
-        switch (mode) {
+        switch(mode) {
             case NEXT_SIBLING:
                 return parent.getRight() + 1;
             case PREV_SIBLING:
@@ -131,7 +122,7 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
     }
 
     private boolean applyGte(Mode mode) {
-        switch (mode) {
+        switch(mode) {
             case NEXT_SIBLING:
             case FIRST_CHILD:
                 return false;
@@ -141,5 +132,4 @@ public class QueryBasedNestedNodeInserter<ID extends Serializable, N extends Nes
                 return true;
         }
     }
-
 }

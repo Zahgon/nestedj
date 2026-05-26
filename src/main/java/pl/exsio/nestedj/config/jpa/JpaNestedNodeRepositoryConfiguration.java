@@ -17,13 +17,11 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.config.jpa;
 
 import pl.exsio.nestedj.config.jpa.discriminator.JpaTreeDiscriminator;
 import pl.exsio.nestedj.config.jpa.discriminator.MapJpaTreeDiscriminator;
 import pl.exsio.nestedj.model.NestedNode;
-
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
@@ -51,8 +49,7 @@ public class JpaNestedNodeRepositoryConfiguration<ID extends Serializable, N ext
      * @param idClass - Nested Node Class
      * @param treeDiscriminator - custom Tree Discriminator
      */
-    public JpaNestedNodeRepositoryConfiguration(
-            EntityManager entityManager, Class<N> nodeClass, Class<ID> idClass, JpaTreeDiscriminator<ID, N> treeDiscriminator) {
+    public JpaNestedNodeRepositoryConfiguration(EntityManager entityManager, Class<N> nodeClass, Class<ID> idClass, JpaTreeDiscriminator<ID, N> treeDiscriminator) {
         this.treeDiscriminator = treeDiscriminator;
         this.entityManager = entityManager;
         this.nodeClass = nodeClass;
@@ -74,27 +71,27 @@ public class JpaNestedNodeRepositoryConfiguration<ID extends Serializable, N ext
      * @return Tree Discriminator used by this Configuration
      */
     public JpaTreeDiscriminator<ID, N> getTreeDiscriminator() {
-        return treeDiscriminator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return JPA Entity Manager used by this Configuration
      */
     public EntityManager getEntityManager() {
-        return entityManager;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Node Class used by this Configuration
      */
     public Class<N> getNodeClass() {
-        return nodeClass;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Node Identifier Class used by this Configuration
      */
     public Class<ID> getIdClass() {
-        return idClass;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

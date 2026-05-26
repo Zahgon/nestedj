@@ -17,12 +17,10 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.lock;
 
 import pl.exsio.nestedj.NestedNodeRepository;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 
 /**
@@ -32,12 +30,13 @@ import java.io.Serializable;
  * @param <N> - Nested Node Class
  */
 public class NoLock<ID extends Serializable, N extends NestedNode<ID>> implements NestedNodeRepository.Lock<ID, N> {
+
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean lockNode(N node) {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -45,6 +44,7 @@ public class NoLock<ID extends Serializable, N extends NestedNode<ID>> implement
      */
     @Override
     public void unlockNode(N node) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,7 +52,7 @@ public class NoLock<ID extends Serializable, N extends NestedNode<ID>> implement
      */
     @Override
     public boolean lockRepository() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,5 +60,6 @@ public class NoLock<ID extends Serializable, N extends NestedNode<ID>> implement
      */
     @Override
     public void unlockRepository() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

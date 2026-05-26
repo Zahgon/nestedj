@@ -51,38 +51,36 @@ public class InMemoryTree<ID extends Serializable, N extends NestedNode<ID>> imp
 
     @Override
     public void addChild(Tree<ID, N> child) {
-        this.children.add(child);
-        child.setParent(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setChildren(List<Tree<ID, N>> children) {
-        this.children = children;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public List<Tree<ID, N>> getChildren() {
-        return this.children;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Tree<ID, N> getParent() {
-        return this.parent;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setParent(Tree<ID, N> parent) {
-        this.parent = parent;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public N getNode() {
-        return this.node;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setNode(N node) {
-        this.node = node;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

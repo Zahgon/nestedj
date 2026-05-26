@@ -23,9 +23,7 @@ import pl.exsio.nestedj.delegate.NestedNodeRemover;
 import pl.exsio.nestedj.delegate.query.NestedNodeRemovingQueryDelegate;
 import pl.exsio.nestedj.model.NestedNode;
 import pl.exsio.nestedj.model.NestedNodeInfo;
-
 import java.io.Serializable;
-
 import static pl.exsio.nestedj.model.NestedNode.LEFT;
 import static pl.exsio.nestedj.model.NestedNode.RIGHT;
 
@@ -39,20 +37,11 @@ public class QueryBasedNestedNodeRemover<ID extends Serializable, N extends Nest
 
     @Override
     public void removeSingle(NestedNodeInfo<ID> nodeInfo) {
-        Long from = nodeInfo.getRight();
-        queryDelegate.setNewParentForDeletedNodesChildren(nodeInfo);
-        queryDelegate.decrementSideFieldsBeforeSingleNodeRemoval(from, RIGHT);
-        queryDelegate.decrementSideFieldsBeforeSingleNodeRemoval(from, LEFT);
-        queryDelegate.pushUpDeletedNodesChildren(nodeInfo);
-        queryDelegate.performSingleDeletion(nodeInfo);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void removeSubtree(NestedNodeInfo<ID> nodeInfo) {
-        Long delta = nodeInfo.getRight() - nodeInfo.getLeft() + 1;
-        Long from = nodeInfo.getRight();
-        queryDelegate.performBatchDeletion(nodeInfo);
-        queryDelegate.decrementSideFieldsAfterSubtreeRemoval(from, delta, RIGHT);
-        queryDelegate.decrementSideFieldsAfterSubtreeRemoval(from, delta, LEFT);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

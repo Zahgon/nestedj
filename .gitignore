@@ -37,3 +37,7 @@ transaction-logs
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+.aider*
+logs/
+.commit0_scripts/
+.github/workflows/

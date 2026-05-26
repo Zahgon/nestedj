@@ -17,7 +17,6 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.delegate.query.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,7 +24,6 @@ import org.springframework.jdbc.core.RowMapper;
 import pl.exsio.nestedj.config.jdbc.JdbcNestedNodeRepositoryConfiguration;
 import pl.exsio.nestedj.config.jdbc.discriminator.JdbcTreeDiscriminator;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -82,18 +80,11 @@ public abstract class JdbcNestedNodeQueryDelegate<ID extends Serializable, N ext
     }
 
     protected String getDiscriminatedQuery(String baseQuery) {
-        String disriminatedQuery = treeDiscriminator.getQueryPart();
-        String[] queryParts = baseQuery.split("order by");
-
-        String modifiedQuery = queryParts[0].contains("where") ? String.format("%s and %s", queryParts[0], disriminatedQuery) : String.format("%s where %s", queryParts[0], disriminatedQuery);
-        String s = queryParts.length == 1 ? modifiedQuery : String.format("%s order by %s", modifiedQuery, queryParts[1]);
-        return s;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected void setDiscriminatorParams(PreparedStatement ps, int offset) throws SQLException {
-        for (int i = 0; i < treeDiscriminator.getParameters().size(); i++) {
-            ps.setObject(i + offset, treeDiscriminator.getParameters().get(i));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected class Query {
@@ -107,24 +98,11 @@ public abstract class JdbcNestedNodeQueryDelegate<ID extends Serializable, N ext
         }
 
         public Query set(String label, String part) {
-            parts.put(label, part);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         protected String build() {
-            String q = query;
-            q = q.replaceAll(":tableName", tableName);
-            q = q.replaceAll(":parentId", parentId);
-            q = q.replaceAll(":id", id);
-            q = q.replaceAll(":left", left);
-            q = q.replaceAll(":right", right);
-            q = q.replaceAll(":level", level);
-            for (Map.Entry<String, String> entry : parts.entrySet()) {
-                String label = ":" + entry.getKey();
-                String part = entry.getValue();
-                q = q.replaceAll(label, part);
-            }
-            return q;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 }

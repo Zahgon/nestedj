@@ -17,31 +17,27 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.delegate.query.jpa;
 
 import pl.exsio.nestedj.config.jpa.JpaNestedNodeRepositoryConfiguration;
 import pl.exsio.nestedj.delegate.query.NestedNodeMovingQueryDelegate;
 import pl.exsio.nestedj.model.NestedNode;
 import pl.exsio.nestedj.model.NestedNodeInfo;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
-
 import static pl.exsio.nestedj.model.NestedNode.ID;
 import static pl.exsio.nestedj.model.NestedNode.LEFT;
 import static pl.exsio.nestedj.model.NestedNode.LEVEL;
 import static pl.exsio.nestedj.model.NestedNode.PARENT_ID;
 import static pl.exsio.nestedj.model.NestedNode.RIGHT;
 
-public class JpaNestedNodeMovingQueryDelegate<ID extends Serializable, N extends NestedNode<ID>>
-        extends JpaNestedNodeQueryDelegate<ID, N>
-        implements NestedNodeMovingQueryDelegate<ID, N> {
+public class JpaNestedNodeMovingQueryDelegate<ID extends Serializable, N extends NestedNode<ID>> extends JpaNestedNodeQueryDelegate<ID, N> implements NestedNodeMovingQueryDelegate<ID, N> {
 
     private enum Mode {
+
         UP, DOWN
     }
 
@@ -53,67 +49,49 @@ public class JpaNestedNodeMovingQueryDelegate<ID extends Serializable, N extends
 
     @Override
     public Integer markNodeIds(NestedNodeInfo<ID> node) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaUpdate<N> update = cb.createCriteriaUpdate(nodeClass);
-        Root<N> root = update.from(nodeClass);
-        update
-                .set(root.<Long>get(RIGHT), markRightField(root))
-                .where(
-                        getPredicates(cb, root,
-                                cb.greaterThanOrEqualTo(root.get(LEFT), node.getLeft()),
-                                cb.lessThanOrEqualTo(root.get(RIGHT), node.getRight())
-                        ));
-        return entityManager.createQuery(update).executeUpdate();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     @Override
     public void updateSideFieldsUp(Long delta, Long start, Long stop, String field) {
-        updateFields(Mode.UP, delta, start, stop, field);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void updateSideFieldsDown(Long delta, Long start, Long stop, String field) {
-        updateFields(Mode.DOWN, delta, start, stop, field);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void performMoveUp(Long nodeDelta, Long levelModificator) {
-        performMove(Mode.UP, nodeDelta, levelModificator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void performMoveDown(Long nodeDelta, Long levelModificator) {
-        performMove(Mode.DOWN, nodeDelta, levelModificator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void updateParentField(ID newParentId, NestedNodeInfo<ID> node) {
-        if (newParentId == null) {
-            throw new NullPointerException("newParentId cannot be null");
-        }
-        doUpdateParentField(newParentId, node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void clearParentField(NestedNodeInfo<ID> node) {
-        doUpdateParentField(null, node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void updateFields(Mode mode, Long delta, Long start, Long stop, String field) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaUpdate<N> update = cb.createCriteriaUpdate(nodeClass);
         Root<N> root = update.from(nodeClass);
-
         if (Mode.DOWN.equals(mode)) {
             update.set(root.<Long>get(field), cb.diff(root.get(field), delta));
         } else if (Mode.UP.equals(mode)) {
             update.set(root.<Long>get(field), cb.sum(root.get(field), delta));
         }
-        update.where(getPredicates(cb, root,
-                cb.greaterThan(root.get(field), start),
-                cb.lessThan(root.get(field), stop)
-        ));
+        update.where(getPredicates(cb, root, cb.greaterThan(root.get(field), start), cb.lessThan(root.get(field), stop)));
         entityManager.createQuery(update).executeUpdate();
     }
 
@@ -121,7 +99,6 @@ public class JpaNestedNodeMovingQueryDelegate<ID extends Serializable, N extends
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaUpdate<N> update = cb.createCriteriaUpdate(nodeClass);
         Root<N> root = update.from(nodeClass);
-
         update.set(root.<Long>get(LEVEL), cb.sum(root.get(LEVEL), levelModificator));
         if (Mode.DOWN.equals(mode)) {
             update.set(root.<Long>get(RIGHT), cb.diff(unMarkRightField(root), nodeDelta));
@@ -130,9 +107,7 @@ public class JpaNestedNodeMovingQueryDelegate<ID extends Serializable, N extends
             update.set(root.<Long>get(RIGHT), cb.sum(unMarkRightField(root), nodeDelta));
             update.set(root.<Long>get(LEFT), cb.sum(root.get(LEFT), nodeDelta));
         }
-        update.where(
-                getPredicates(cb, root, cb.lessThan(root.get(RIGHT), 0))
-        );
+        update.where(getPredicates(cb, root, cb.lessThan(root.get(RIGHT), 0)));
         entityManager.createQuery(update).executeUpdate();
     }
 
@@ -150,10 +125,7 @@ public class JpaNestedNodeMovingQueryDelegate<ID extends Serializable, N extends
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaUpdate<N> update = cb.createCriteriaUpdate(nodeClass);
         Root<N> root = update.from(nodeClass);
-
-        update.set(root.get(PARENT_ID), newParentId)
-                .where(getPredicates(cb, root, cb.equal(root.get(ID), node.getId())));
-
+        update.set(root.get(PARENT_ID), newParentId).where(getPredicates(cb, root, cb.equal(root.get(ID), node.getId())));
         entityManager.createQuery(update).executeUpdate();
     }
 }

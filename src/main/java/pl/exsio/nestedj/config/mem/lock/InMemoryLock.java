@@ -17,12 +17,10 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.config.mem.lock;
 
 import pl.exsio.nestedj.NestedNodeRepository;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
@@ -65,19 +63,7 @@ public class InMemoryLock<ID extends Serializable, N extends NestedNode<ID>> imp
      */
     @Override
     public synchronized boolean lockNode(N node) {
-        if (repositoryLocked.get()) {
-            return false;
-        }
-        if (lockHandleProvider == null) {
-            return lockRepository();
-        }
-
-        Object handle = lockHandleProvider.apply(node);
-        if (lockHandles.contains(handle)) {
-            return false;
-        }
-        lockHandles.add(handle);
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -85,11 +71,7 @@ public class InMemoryLock<ID extends Serializable, N extends NestedNode<ID>> imp
      */
     @Override
     public synchronized void unlockNode(N node) {
-        if (lockHandleProvider == null) {
-            unlockRepository();
-        } else {
-            lockHandles.remove(lockHandleProvider.apply(node));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,11 +79,7 @@ public class InMemoryLock<ID extends Serializable, N extends NestedNode<ID>> imp
      */
     @Override
     public synchronized boolean lockRepository() {
-        if (repositoryLocked.get()) {
-            return false;
-        }
-        repositoryLocked.set(true);
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -109,6 +87,6 @@ public class InMemoryLock<ID extends Serializable, N extends NestedNode<ID>> imp
      */
     @Override
     public synchronized void unlockRepository() {
-        repositoryLocked.set(false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

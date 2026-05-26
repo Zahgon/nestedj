@@ -26,7 +26,6 @@ import pl.exsio.nestedj.ex.RepositoryLockedException;
 import pl.exsio.nestedj.model.NestedNode;
 import pl.exsio.nestedj.model.NestedNodeInfo;
 import pl.exsio.nestedj.model.Tree;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -50,12 +49,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
 
     private boolean allowNullableTreeFields = false;
 
-    public DelegatingNestedNodeRepository(NestedNodeMover<ID, N> mover,
-                                          NestedNodeRemover<ID, N> remover,
-                                          NestedNodeRetriever<ID, N> retriever,
-                                          NestedNodeRebuilder<ID, N> rebuilder,
-                                          NestedNodeInserter<ID, N> inserter,
-                                          Lock<ID, N> lock) {
+    public DelegatingNestedNodeRepository(NestedNodeMover<ID, N> mover, NestedNodeRemover<ID, N> remover, NestedNodeRetriever<ID, N> retriever, NestedNodeRebuilder<ID, N> rebuilder, NestedNodeInserter<ID, N> inserter, Lock<ID, N> lock) {
         this.inserter = inserter;
         this.mover = mover;
         this.remover = remover;
@@ -69,7 +63,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void insertAsFirstChildOf(N node, N parent) {
-        lockNode(node, () -> insertOrMove(node, parent, NestedNodeHierarchyManipulator.Mode.FIRST_CHILD));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,7 +71,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void insertAsLastChildOf(N node, N parent) {
-        lockNode(node, () -> insertOrMove(node, parent, NestedNodeHierarchyManipulator.Mode.LAST_CHILD));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -85,7 +79,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void insertAsNextSiblingOf(N node, N parent) {
-        lockNode(node, () -> insertOrMove(node, parent, NestedNodeHierarchyManipulator.Mode.NEXT_SIBLING));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -93,7 +87,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void insertAsPrevSiblingOf(N node, N parent) {
-        lockNode(node, () -> insertOrMove(node, parent, NestedNodeHierarchyManipulator.Mode.PREV_SIBLING));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void insertOrMove(N node, N parent, NestedNodeHierarchyManipulator.Mode mode) {
@@ -132,14 +126,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void removeSingle(N node) {
-        lockNode(node, () -> {
-            Optional<NestedNodeInfo<ID>> nodeInfo = retriever.getNodeInfo(node.getId());
-            if (nodeInfo.isPresent()) {
-                this.remover.removeSingle(nodeInfo.get());
-            } else {
-                throw new InvalidNodeException(String.format("Couldn't remove node, was it already removed?: %s", node));
-            }
-        });
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,14 +134,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void removeSubtree(N node) {
-        lockNode(node, () -> {
-            Optional<NestedNodeInfo<ID>> nodeInfo = retriever.getNodeInfo(node.getId());
-            if (nodeInfo.isPresent()) {
-                this.remover.removeSubtree(nodeInfo.get());
-            } else {
-                throw new InvalidNodeException(String.format("Couldn't remove node subtree, was it already removed?: %s", node));
-            }
-        });
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -162,7 +142,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public List<N> getTreeAsList(N node) {
-        return this.retriever.getTreeAsList(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,7 +150,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public List<N> getChildren(N node) {
-        return this.retriever.getChildren(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -178,7 +158,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public Optional<N> getParent(N node) {
-        return this.retriever.getParent(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -186,7 +166,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public Optional<N> getPrevSibling(N node) {
-        return this.retriever.getPrevSibling(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -194,7 +174,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public Optional<N> getNextSibling(N node) {
-        return this.retriever.getNextSibling(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -202,7 +182,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public Tree<ID, N> getTree(N node) {
-        return this.retriever.getTree(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -210,7 +190,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public List<N> getParents(N node) {
-        return this.retriever.getParents(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -218,7 +198,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void rebuildTree() {
-        lockRepository(rebuilder::rebuildTree);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -226,7 +206,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void destroyTree() {
-        lockRepository(rebuilder::destroyTree);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -234,16 +214,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void insertAsFirstRoot(N node) {
-        lockNode(node, () -> {
-            Optional<N> firstRoot = retriever.findFirstRoot();
-            if (firstRoot.isPresent()) {
-                if (differentNodes(node, firstRoot.get())) {
-                    insertOrMove(node, firstRoot.get(), NestedNodeHierarchyManipulator.Mode.PREV_SIBLING);
-                }
-            } else {
-                insertAsFirstNode(node);
-            }
-        });
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -251,16 +222,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
      */
     @Override
     public void insertAsLastRoot(N node) {
-        lockNode(node, () -> {
-            Optional<N> lastRoot = retriever.findLastRoot();
-            if (lastRoot.isPresent()) {
-                if (differentNodes(node, lastRoot.get())) {
-                    insertOrMove(node, lastRoot.get(), NestedNodeHierarchyManipulator.Mode.NEXT_SIBLING);
-                }
-            } else {
-                insertAsFirstNode(node);
-            }
-        });
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean differentNodes(N node, N firstRoot) {
@@ -272,13 +234,12 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
     }
 
     public boolean isAllowNullableTreeFields() {
-        return allowNullableTreeFields;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setAllowNullableTreeFields(boolean allowNullableTreeFields) {
-        this.allowNullableTreeFields = allowNullableTreeFields;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     private void lockNode(N node, TreeModifier modifier) {
         if (!lock.lockNode(node)) {
@@ -303,6 +264,7 @@ public class DelegatingNestedNodeRepository<ID extends Serializable, N extends N
     }
 
     private interface TreeModifier {
+
         void modifyTree();
     }
 }

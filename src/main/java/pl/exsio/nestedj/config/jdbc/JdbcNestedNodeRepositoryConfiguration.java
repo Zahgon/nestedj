@@ -17,7 +17,6 @@
  *  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-
 package pl.exsio.nestedj.config.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,7 +24,6 @@ import org.springframework.jdbc.core.RowMapper;
 import pl.exsio.nestedj.config.jdbc.discriminator.JdbcTreeDiscriminator;
 import pl.exsio.nestedj.delegate.query.jdbc.JdbcKeyHolder;
 import pl.exsio.nestedj.model.NestedNode;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -71,11 +69,7 @@ public class JdbcNestedNodeRepositoryConfiguration<ID extends Serializable, N ex
      * @param generatedKeyResolver - generated db keys resolver
      * @param treeDiscriminator    - custom Tree Discriminator
      */
-    public JdbcNestedNodeRepositoryConfiguration(JdbcTemplate jdbcTemplate, String tableName,
-                                                 RowMapper<N> rowMapper, String insertQuery,
-                                                 Function<N, Object[]> insertValuesProvider,
-                                                 BiFunction<N, JdbcKeyHolder, ID> generatedKeyResolver,
-                                                 JdbcTreeDiscriminator treeDiscriminator) {
+    public JdbcNestedNodeRepositoryConfiguration(JdbcTemplate jdbcTemplate, String tableName, RowMapper<N> rowMapper, String insertQuery, Function<N, Object[]> insertValuesProvider, BiFunction<N, JdbcKeyHolder, ID> generatedKeyResolver, JdbcTreeDiscriminator treeDiscriminator) {
         this.jdbcTemplate = jdbcTemplate;
         this.tableName = tableName;
         this.rowMapper = rowMapper;
@@ -101,19 +95,17 @@ public class JdbcNestedNodeRepositoryConfiguration<ID extends Serializable, N ex
      * @param insertValuesProvider - provider of Insert SQL values
      * @param generatedKeyResolver - generated db keys resolver
      */
-    public JdbcNestedNodeRepositoryConfiguration(JdbcTemplate jdbcTemplate, String tableName,
-                                                 RowMapper<N> rowMapper, String insertQuery,
-                                                 Function<N, Object[]> insertValuesProvider,
-                                                 BiFunction<N, JdbcKeyHolder, ID> generatedKeyResolver) {
+    public JdbcNestedNodeRepositoryConfiguration(JdbcTemplate jdbcTemplate, String tableName, RowMapper<N> rowMapper, String insertQuery, Function<N, Object[]> insertValuesProvider, BiFunction<N, JdbcKeyHolder, ID> generatedKeyResolver) {
         this(jdbcTemplate, tableName, rowMapper, insertQuery, insertValuesProvider, generatedKeyResolver, new JdbcTreeDiscriminator() {
+
             @Override
             public String getQueryPart() {
-                return "";
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
 
             @Override
             public List<Object> getParameters() {
-                return new LinkedList<>();
+                throw new UnsupportedOperationException("STUB: not implemented");
             }
         });
     }
@@ -122,109 +114,104 @@ public class JdbcNestedNodeRepositoryConfiguration<ID extends Serializable, N ex
      * @return Spring JdbcTemplate used by this Configuration
      */
     public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Database Table name used by this Configuration
      */
     public String getTableName() {
-        return tableName;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Spring RowMapper used by this Configuration
      */
     public RowMapper<N> getRowMapper() {
-        return rowMapper;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Insert SQL Query used by this Configuration
      */
     public String getInsertQuery() {
-        return insertQuery;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Insert statement values provider used by this Configuration
      */
     public Function<N, Object[]> getInsertValuesProvider() {
-        return insertValuesProvider;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Tree Discriminator used by this Configuration
      */
     public JdbcTreeDiscriminator getTreeDiscriminator() {
-        return treeDiscriminator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return Maping of SQL column names to standarized field names used by this Configuration
      */
     public Map<String, String> getTreeColumnNames() {
-        return treeColumnNames;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets custom ID column name
      */
     public JdbcNestedNodeRepositoryConfiguration<ID, N> setIdColumnName(String field) {
-        treeColumnNames.put(NestedNode.ID, field);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets custom PARENT_ID column name
      */
     public JdbcNestedNodeRepositoryConfiguration<ID, N> setParentIdColumnName(String field) {
-        treeColumnNames.put(NestedNode.PARENT_ID, field);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets custom LEFT column name
      */
     public JdbcNestedNodeRepositoryConfiguration<ID, N> setLeftColumnName(String field) {
-        treeColumnNames.put(NestedNode.LEFT, field);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets custom RIGHT name
      */
     public JdbcNestedNodeRepositoryConfiguration<ID, N> setRightColumnName(String field) {
-        treeColumnNames.put(NestedNode.RIGHT, field);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets custom LEVEL column name
      */
     public JdbcNestedNodeRepositoryConfiguration<ID, N> setLevelColumnName(String field) {
-        treeColumnNames.put(NestedNode.LEVEL, field);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return SQL Select Query used by this Configuration
      */
     public String getSelectQuery() {
-        return selectQuery;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return JDBC Generated Keys Resolver
      */
     public BiFunction<N, JdbcKeyHolder, ID> getGeneratedKeyResolver() {
-        return generatedKeyResolver;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets custom SQL Select query
      */
     public void setSelectQuery(String selectQuery) {
-        this.selectQuery = selectQuery;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
